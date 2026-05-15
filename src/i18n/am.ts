@@ -1,0 +1,30 @@
+const am = {
+  appName: 'CivicSystem ኢትዮጵያ',
+  loading: 'በመጫን ላይ...',
+  save: 'ለውጦችን ያስቀምጡ',
+  cancel: 'ይቅር',
+  confirm: 'ያረጋግጡ',
+  back: 'ተመለስ',
+  submit: 'ያስገቡ',
+  update: 'ያዘምኑ',
+  delete: 'ሰርዝ',
+  search: 'ፈልግ',
+  filter: 'ማጣሪያ',
+  clear: 'ንጽህ',
+  close: 'ዝጋ',
+  yes: 'አዎ',
+  no: 'አይ',
+  or: 'ወይም',
+  all: 'ሁሉም',
+  none: 'ምንም',
+  noData: 'ምንም ውሂብ አልተገኘም።',
+  viewAll: 'ሁሉንም ይመልከቱ',
+  viewDetails: 'ዝርዝሮችን ይመልከቱ →',
+  copied: 'ተቅዳ!',
+  share: 'ያጋሩ',
+  export: 'ወደ ውጪ ላክ',
+  apply: 'ተግብር',
+} as const;
+
+export type TranslationKeys = typeof am;
+export default am;
