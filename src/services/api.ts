@@ -9,7 +9,9 @@ const getApiBaseUrl = (): string => {
   // First try environment variable
   if (process.env.REACT_APP_API_URL) {
     console.log('Using REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
-    return process.env.REACT_APP_API_URL;
+    // Ensure it includes /api/v1
+    const url = process.env.REACT_APP_API_URL;
+    return url.endsWith('/api/v1') ? url : `${url}/api/v1`;
   }
   
   // Fallback: construct from current window location
@@ -20,8 +22,8 @@ const getApiBaseUrl = (): string => {
   }
   
   // For production on Vercel, use the backend URL
-  console.log('Using production backend: https://civic-backend-l9my.onrender.com');
-  return 'https://civic-backend-l9my.onrender.com';
+  console.log('Using production backend: https://civic-backend-l9my.onrender.com/api/v1');
+  return 'https://civic-backend-l9my.onrender.com/api/v1';
 };
 
 const API_BASE_URL = getApiBaseUrl();
