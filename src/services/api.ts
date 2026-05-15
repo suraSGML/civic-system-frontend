@@ -9,28 +9,31 @@ const getApiBaseUrl = (): string => {
   // First try environment variable
   if (process.env.REACT_APP_API_URL) {
     console.log('Using REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
-    // Ensure it includes /api/v1
-    const url = process.env.REACT_APP_API_URL;
-    return url.endsWith('/api/v1') ? url : `${url}/api/v1`;
+    // Remove /api/v1 if it's included - we'll add it in the axios instance
+    let url = process.env.REACT_APP_API_URL;
+    if (url.endsWith('/api/v1')) {
+      url = url.replace('/api/v1', '');
+    }
+    return url;
   }
   
   // Fallback: construct from current window location
   // If running on localhost:3000, API is on localhost:8000
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    console.log('Using localhost fallback: http://localhost:8000/api/v1');
-    return 'http://localhost:8000/api/v1';
+    console.log('Using localhost fallback: http://localhost:8000');
+    return 'http://localhost:8000';
   }
   
   // For production on Vercel, use the backend URL
-  console.log('Using production backend: https://civic-backend-l9my.onrender.com/api/v1');
-  return 'https://civic-backend-l9my.onrender.com/api/v1';
+  console.log('Using production backend: https://civic-backend-l9my.onrender.com');
+  return 'https://civic-backend-l9my.onrender.com';
 };
 
 const API_BASE_URL = getApiBaseUrl();
 console.log('Final API_BASE_URL:', API_BASE_URL);
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: `${API_BASE_URL}/api/v1`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -64,7 +67,7 @@ api.interceptors.response.use(
         if (stored) {
           const { state } = JSON.parse(stored);
           if (state?.refreshToken) {
-            const response = await axios.post(`${API_BASE_URL}/auth/token/refresh/`, {
+            const response = await axios.post(`${API_BASE_URL}/api/v1/auth/token/refresh/`, {
               refresh: state.refreshToken,
             });
             const { access } = response.data;
