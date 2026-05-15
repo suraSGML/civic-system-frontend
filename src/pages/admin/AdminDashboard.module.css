@@ -1,0 +1,130 @@
+.page { display: flex; flex-direction: column; gap: 26px; animation: fadeIn 0.25s ease-out; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header h1 { font-size: 26px; font-weight: 800; color: #0f172a; }
+.header p  { font-size: 15px; color: #64748b; margin-top: 4px; }
+
+.exportBtns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.exportBtn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 16px; background: white; border: 1.5px solid #e2e8f0;
+  border-radius: 9px; font-size: 14px; font-weight: 600; color: #374151;
+  cursor: pointer; transition: all 0.15s;
+}
+.exportBtn:hover:not(:disabled) { background: #f8fafc; border-color: #2563eb; color: #2563eb; }
+.exportBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Summary cards ────────────────────────────────────────── */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
+}
+
+.summaryCard {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-top: 4px solid;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+.summaryCard:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+
+.cardLabel { font-size: 13px; color: #64748b; font-weight: 500; }
+.cardValue { font-size: 32px; font-weight: 800; margin-top: 6px; line-height: 1; }
+
+/* ── Charts grid ──────────────────────────────────────────── */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chartCard {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: box-shadow 0.2s;
+}
+.chartCard:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.07); }
+
+.chartCard h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+/* ── Worker table ─────────────────────────────────────────── */
+.tableCard {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.tableCard h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 18px;
+}
+
+.tableWrap { overflow-x: auto; }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 13px;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+  font-size: 14px;
+}
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: #f8fafc; }
+
+.progressBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.progressFill {
+  height: 8px;
+  border-radius: 4px;
+  flex: 1;
+  max-width: 120px;
+  transition: width 0.5s ease;
+}
+
+.progressBar span { font-size: 13px; font-weight: 700; color: #374151; min-width: 36px; }
+
+@media (max-width: 768px) {
+  .chartsGrid { grid-template-columns: 1fr; }
+  .chartsGrid > *[style*="span 2"] { grid-column: span 1; }
+  .summaryGrid { grid-template-columns: 1fr 1fr; }
+}
