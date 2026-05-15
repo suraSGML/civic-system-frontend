@@ -19,10 +19,9 @@ const getApiBaseUrl = (): string => {
     return 'http://localhost:8000/api/v1';
   }
   
-  // For production, assume API is on same host
-  const url = `${window.location.protocol}//${window.location.hostname}:8000/api/v1`;
-  console.log('Using production fallback:', url);
-  return url;
+  // For production on Vercel, use the backend URL
+  console.log('Using production backend: https://civic-backend-l9my.onrender.com');
+  return 'https://civic-backend-l9my.onrender.com';
 };
 
 const API_BASE_URL = getApiBaseUrl();
